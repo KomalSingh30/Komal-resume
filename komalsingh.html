@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume | Komal Kumari Singh</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles for the page and print functionality */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Styles for editable content */
+        .editable {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .editing .editable {
+            background-color: #f0f9ff; /* Light blue background when editing */
+            box-shadow: 0 0 0 2px #3b82f6; /* Blue ring when editing */
+            border-radius: 4px;
+            cursor: text;
+        }
+
+        /* Hide buttons and editing styles when printing */
+        @media print {
+            .no-print {
+                display: none;
+            }
+            .editing .editable {
+                background-color: transparent;
+                box-shadow: none;
+            }
+            body {
+                -webkit-print-color-adjust: exact; /* Ensures colors and backgrounds print correctly in Chrome/Safari */
+                color-adjust: exact;
+            }
+            .resume-container {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4 sm:p-8">
+
+    <!-- Control Buttons -->
+    <div class="no-print max-w-4xl mx-auto mb-6 flex flex-col sm:flex-row gap-3 justify-end">
+        <button id="editButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300">
+            Toggle Edit Mode
+        </button>
+        <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300">
+            Print / Save as PDF
+        </button>
+    </div>
+
+    <!-- Main Resume Container -->
+    <div id="resumeContainer" class="resume-container max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+        
+        <!-- Header Section -->
+        <header class="bg-gray-50 p-8 md:p-12 border-b-2 border-gray-200 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold text-blue-800 editable" id="userName">KOMAL KUMARI SINGH</h1>
+                <p class="text-lg md:text-xl text-gray-600 mt-2 editable" id="userTitle">Aspiring Teacher | B.Sc. Graduate | CBSE Curriculum</p>
+                <div class="mt-4 text-gray-500 space-y-1">
+                    <p class="editable" id="userMobile"><strong>Mobile:</strong> 8102264803</p>
+                    <p class="editable" id="userEmail"><strong>Email:</strong> komalpat2002@gmail.com</p>
+                    <p class="editable" id="userAddress"><strong>Address:</strong> East ramkrishna nagar, Vasudev colony, Patna 27.</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0">
+                <img src="komli.jpeg" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/150x150/a0aec0/ffffff?text=Error';"
+                     alt="Profile Picture" 
+                     class="rounded-full w-36 h-36 md:w-40 md:h-40 object-cover border-4 border-blue-200 shadow-lg">
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="p-8 md:p-12">
+
+            <!-- Career Objective Section -->
+            <section>
+                <h2 class="text-2xl font-bold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">CAREER OBJECTIVE</h2>
+                <p class="text-gray-700 leading-relaxed editable" id="careerObjective">
+                    An enthusiastic and dedicated B.Sc. graduate is seeking a teaching position within the CBSE curriculum. Passionate about student development, academic excellence, and creating an engaging learning environment that utilizes advanced teaching methods.
+                </p>
+            </section>
+
+            <!-- Education Section -->
+            <section class="mt-6">
+                <h2 class="text-2xl font-bold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">EDUCATION</h2>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+                        <p class="font-semibold editable">Bachelor of Science (B.Sc.)</p>
+                        <p class="text-gray-600 editable">Patliputra University</p>
+                        <p class="text-gray-600 md:text-right editable">2025 | 71.2%</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+                        <p class="font-semibold editable">Intermediate</p>
+                        <p class="text-gray-600 editable">College of commerce, arts and science.</p>
+                        <p class="text-gray-600 md:text-right editable">2022 | 72%</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+                        <p class="font-semibold editable">10<sup>th</sup> Class</p>
+                        <p class="text-gray-600 editable">St.John's residential public school.</p>
+                        <p class="text-gray-600 md:text-right editable">2020 | 74%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="mt-6">
+                <h2 class="text-2xl font-bold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">SKILLS</h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 columns-1 md:columns-2">
+                    <li class="editable">Strong subject knowledge (Mathematics)</li>
+                    <li class="editable">Lesson planning & curriculum development</li>
+                    <li class="editable">Student mentoring & academic support</li>
+                    <li class="editable">Effective classroom management</li>
+                    <li class="editable">Excellent communication and interpersonal skills</li>
+                    <li class="editable">Basic computer skills (MS Office, Zoom, Google Classroom)</li>
+                </ul>
+            </section>
+
+            <!-- Certifications Section -->
+            <section class="mt-6">
+                <h2 class="text-2xl font-bold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">CERTIFICATIONS</h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li class="editable">Certificate in Computer application</li>
+                    <li class="editable">Certificate in Madhubani and Mandla painting</li>
+                </ul>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="mt-6">
+                <h2 class="text-2xl font-bold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4"> 3 YEARS OF EXPERIENCE IN TEACHING </h2>
+                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                    <li class="editable">Kinesis International School : English and EVS</li>
+                    <li class="editable">Patna Convent : EVS and Maths</li>
+                </ul>
+            </section>
+            
+            <!-- Personal Details Section -->
+            <section class="mt-6">
+                <h2 class="text-2xl font-bold text-blue-700 border-b-2 border-blue-200 pb-2 mb-4">PERSONAL DETAILS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                    <p><strong class="font-medium">Date of Birth:</strong> <span class="editable">30 April 2002</span></p>
+                    <p><strong class="font-medium">Gender:</strong> <span class="editable">Female</span></p>
+                    <p><strong class="font-medium">Father's Name:</strong> <span class="editable">Shailendra kumar</span></p>
+                    <p><strong class="font-medium">Marital Status:</strong> <span class="editable">Unmarried</span></p>
+                    <p><strong class="font-medium">Languages Known:</strong> <span class="editable">English, Hindi</span></p>
+                    <p><strong class="font-medium">Hobbies:</strong> <span class="editable">Reading books, drawing</span></p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // JavaScript for the edit functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const editButton = document.getElementById('editButton');
+            const resumeContainer = document.getElementById('resumeContainer');
+            const editableElements = document.querySelectorAll('.editable');
+
+            // Toggle edit mode on button click
+            editButton.addEventListener('click', function() {
+                // Check if currently in editing mode
+                const isEditing = resumeContainer.classList.contains('editing');
+
+                if (isEditing) {
+                    // --- Switch to Save Mode ---
+                    resumeContainer.classList.remove('editing');
+                    editableElements.forEach(el => {
+                        el.contentEditable = 'false';
+                        el.style.outline = 'none'; // Remove outline on save
+                    });
+                    editButton.textContent = 'Toggle Edit Mode';
+                    editButton.classList.remove('bg-red-600', 'hover:bg-red-700');
+                    editButton.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                } else {
+                    // --- Switch to Edit Mode ---
+                    resumeContainer.classList.add('editing');
+                    editableElements.forEach(el => {
+                        el.contentEditable = 'true';
+                        // Optional: Add a focus style for better UX
+                        el.addEventListener('focus', () => el.style.outline = '2px solid #60a5fa');
+                        el.addEventListener('blur', () => el.style.outline = 'none');
+                    });
+                    editButton.textContent = 'Save Changes';
+                    editButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                    editButton.classList.add('bg-red-600', 'hover:bg-red-700');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
